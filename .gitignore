@@ -1,0 +1,19 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+# Useful .gitignore templates: https://github.com/github/gitignore
+node_modules
+dist
+.cache
+.firebaserc
+database.rules.json
+/firebase.json
+/firestore.indexes.json
+/firestore.rules
+/database-debug.log
+/firebase-debug.log
+/pubsub-debug.log
+/firestore-debug.log
+/remoteconfig.template.json
+/storage.rules
+/ui-debug.log
+/.firebase/

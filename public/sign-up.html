@@ -5,19 +5,21 @@
     <title>Sign Up - Rainbow</title>
 </head>
 <body>
-    <form id="signupForm" action="#" method="POST">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email"><br/>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br/>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br/>
-        <input type="submit" value="Sign up!"/>
-    </form>
+    <div id="signUp">
+        <form id="signupForm" action="#" method="POST">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email"><br/>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br/>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br/>
+            <input type="submit" value="Sign up!"/>
+        </form>
 
-    <p>Already have an account? <a href="sign-up.html">Log in!</a></p>
+        <p>Already have an account? <a href="/">Log in!</a></p>
+    </div>
 
-    <p id="error"></p>
+    <p id="message"></p>
 
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->

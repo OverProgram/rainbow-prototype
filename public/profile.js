@@ -6,6 +6,16 @@ function logOut() {
     });
 }
 
+function verify() {
+    const user = firebase.auth().currentUser;
+    const message = document.getElementById('updateProfileText');
+
+    user.sendEmailVerification().then(() => {
+    }).catch((error) => {
+        message.innerHTML = error.message;
+    })
+}
+
 function updateProfile(e) {
     e.preventDefault();
 
@@ -32,6 +42,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         document.getElementById('greetingText').innerText += user.displayName + '!';
         document.getElementById('greeting').style.display = "block";
+
+        if (!user.emailVerified) {
+            document.getElementById('verifiedMessage').style.display = "block";
+        }
     } else {
         location.href = '/';
     }

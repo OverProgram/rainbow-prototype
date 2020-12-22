@@ -18,20 +18,10 @@ function signUp(e) {
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-        user.updateProfile({
-            displayName: name,
-        }).then(() => {
-            user.sendEmailVerification().then(() => {
-                message.innerHTML = "We have sent a verification email to the address " + email + ". Please verify yourself and then <a href=\"/\">Log in</a>.";
-            }).catch((error) => {
-                message.innerHTML = error.message;
-            })
-        })
-    })
-    .catch((error) => {
-        message.innerHTML = error.message;
-    });
+        .then((user) => Promise.all([user.updateProfile({ displayName: name }), user])
+        .then(([res, user]) => user.sendEmailVerification())
+        .then(() => message.innerHTML = "We have sent a verification email to the address " + email + ". Please verify yourself and then <a href=\"/\">Log in</a>."))
+        .catch((error) => { message.innerHTML = error.message; });
 }
 
 document.getElementById("signupForm").onsubmit = signUp;

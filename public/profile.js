@@ -10,10 +10,8 @@ function verify() {
     const user = firebase.auth().currentUser;
     const message = document.getElementById('updateProfileText');
 
-    user.sendEmailVerification().then(() => {
-    }).catch((error) => {
-        message.innerHTML = error.message;
-    })
+    user.sendEmailVerification()
+        .catch((error) => { message.innerHTML = error.message; })
 }
 
 function updateProfile(e) {

@@ -12,11 +12,9 @@ function logIn(e) {
     const email = elements.namedItem("email").value;
     const password = elements.namedItem("password").value;
 
-    firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
-        location.href = '/profile.html';
-    }).catch((error) => {
-        document.getElementById('error').innerHTML = error.message;
-    });
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((user) => { location.href = '/profile.html'; })
+        .catch((error) => { document.getElementById('error').innerHTML = error.message; });
 }
 
 firebase.auth().onAuthStateChanged(checkSingedIn);

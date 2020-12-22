@@ -1,9 +1,6 @@
 function logOut() {
-    firebase.auth().signOut().then(function() {
-        location.href = '/';
-    }).catch(function(error) {
-        // An error happened.
-    });
+    firebase.auth().signOut()
+        .then(function() { location.href = '/'; });
 }
 
 function verify() {
@@ -27,11 +24,9 @@ function updateProfile(e) {
 
     const user = firebase.auth().currentUser;
 
-    user.updateProfile(newUserData).then(() => {
-        document.getElementById('updateProfileText').innerText = "Successfully updated profile";
-    }).catch((e) => {
-        document.getElementById('updateProfileText').innerText = e.message;
-    })
+    user.updateProfile(newUserData)
+        .then(() => { document.getElementById('updateProfileText').innerText = "Successfully updated profile"; })
+        .catch((e) => { document.getElementById('updateProfileText').innerText = e.message; })
 
     location.reload();
 }

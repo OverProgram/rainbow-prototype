@@ -5,6 +5,33 @@
     <title>Chat Room - Rainbow</title>
 </head>
 <body>
+    <div id="rooms" style="display: block">
 
+    </div>
+
+    <div id="chat-room" style="display: none">
+        <div id="messages">
+
+        </div>
+
+        <form id="chat-message-form" action="#" method="POST">
+            <textarea id="message" name="message" rows="4" cols="50" placeholder="Message..."></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+    <script src="src/common.js"></script>
+
+    <script src="src/chat.js"></script>
 </body>
 </html>

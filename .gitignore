@@ -17,3 +17,4 @@ database.rules.json
 /storage.rules
 /ui-debug.log
 /.firebase/
+/db/

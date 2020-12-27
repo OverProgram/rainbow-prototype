@@ -1,8 +1,13 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        chat: './src/chat.js',
+        forgot_password: './src/forgot-password.js',
+        profile: './src/profile.js',
+        sign_up: './src/sign-up.js'
+    },
     mode: 'development',
     module: {
         rules: [
@@ -22,6 +27,7 @@ module.exports = {
         extensions: ["*", ".js", ".jsx"]
     },
     output: {
+        filename: '[name].js',
         path: path.resolve(__dirname, "public/dist"),
         publicPath: "/public/dist"
     }

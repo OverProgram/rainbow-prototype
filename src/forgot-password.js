@@ -1,3 +1,8 @@
+import "./common"
+import firebase from "firebase/app";
+
+import "firebase/auth"
+
 function resetPassword(e) {
     e.preventDefault();
 

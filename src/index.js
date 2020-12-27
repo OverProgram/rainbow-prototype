@@ -1,6 +1,11 @@
+import "./common"
+import firebase from "firebase/app";
+
+import "firebase/auth"
+
 function checkSingedIn(user) {
     if (user) {
-        location.href = '/profile.html';
+        location.href = '/chat.html';
     } else {
         document.getElementById('sign-in').style.display = "block";
     }

@@ -1,3 +1,8 @@
+import "./common"
+import firebase from "firebase/app";
+
+import "firebase/auth"
+
 function signUp(e) {
     e.preventDefault();
     const message = document.getElementById('message');

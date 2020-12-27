@@ -1,3 +1,8 @@
+import "./common"
+import firebase from "firebase/app";
+
+import "firebase/auth"
+
 function logOut() {
     firebase.auth().signOut()
         .then(function() { location.href = '/'; });

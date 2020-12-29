@@ -4,50 +4,56 @@ import firebase from "firebase/app";
 import "firebase/auth"
 import "firebase/database"
 
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
+
 const db = firebase.database;
 
-function addMessage(content) {
-    let messages = document.getElementById('messages');
-    let messageNode = document.createElement('P');
-    messageNode.innerHTML = content;
-    messages.appendChild(messageNode);
+class ChatApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            room: null,
+        };
+    }
+
+    render() {
+        if (this.state.room) {
+            return (<ChatRoom onExit={() => {this.setState({room: null});}}/>);
+        }
+        return (<RoomSelector onClick={(roomName) => {this.setState({room: roomName});}}/>);
+    }
 }
 
-function setRoom(roomName) {
-    document.getElementById('rooms').style.display = "none";
-    document.getElementById('chat-room').style.display = "block";
-    let room = db.ref(`rooms/${roomName}`);
-    let messages = room.child("messages");
-
-    messages.once("value", (snapshot) => {
-        snapshot.forEach((message) => {
-            addMessage(message.val().content);
+class RoomSelector extends Component {
+    constructor(props) {
+        super(props);
+        let rooms = [];
+        db.ref(`users/${firebase.auth().currentUser.uid}/rooms`).once("value", (snapshot) => {
+            snapshot.forEach((room) => {
+                rooms.push(room.val());
+            });
         });
-    });
+        this.state = {
+            rooms: rooms
+        };
+    }
 
-    messages.on("child_added", (message) => {
-        addMessage(message.val().content);
-    });
-
-    document.getElementById('chat-message-form').onsubmit = (e) => {
-        e.preventDefault();
-        let newMessage = messages.push();
-        newMessage.set({
-            content: document.getElementById('message').value,
-            timestamp: Date.now(),
-            user: firebase.auth.currentUser.uid
+    render() {
+        let elements = [];
+        this.state.rooms.forEach((room) => {
+            elements.push(<p onClick={() => {this.props.onClick(room)}}>{room}</p>);
         });
-    };
+        return (<div>
+            {elements}
+        </div>);
+    }
 }
 
-document.onload = function() {
-    let rooms = document.getElementById('rooms');
-    db.ref(`users/${firebase.auth().currentUser.uid}/rooms`).once("value", (snapshot) => {
-        snapshot.forEach((room) => {
-            let p = document.createElement("P");
-            p.innerHTML = room.val();
-            p.onclick = () => setRoom(room.val());
-            rooms.appendChild(p);
-        });
-    });
+class ChatRoom extends Component {
+    render() {
+
+    }
 }
+
+ReactDOM.render(<ChatApp/>, document.getElementById('chat-room'));
